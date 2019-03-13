@@ -200,17 +200,3 @@ export default {
   }
 };
 </script>
-<style>
-f7-segmented {
-  height: 500px;
-}
-f7-menu-bg-color {
-  color: aqua;
-}
-
-.navbar ~ * .fab[class*="-top"],
-.navbar ~ .fab[class*="-top"] {
-  margin-top: 100px;
-  margin-right: 100px;
-}
-</style>

@@ -72,7 +72,6 @@
   </f7-page>
 </template>
 <script>
-// style="margin-left: auto;display: block; margin-right: auto;width: 40%;"
 
 export default {
   data() {

@@ -1,1 +1,11 @@
 /* Your app custom styles here */
+
+/* [home] */
+
+div[data-name="home"] .card-header {
+    display: block;
+  }
+/* [order] */
+div[data-name="order"] .button{
+    display: inline;
+}

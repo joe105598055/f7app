@@ -139,8 +139,3 @@ export default {
   }
 };
 </script>
-<style>
-div[data-name="home"] .card-header {
-  display: block;
-}
-</style>

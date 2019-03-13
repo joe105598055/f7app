@@ -35,7 +35,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(order,index) in selectOrderList" :key="index" @click="ss" class="item-link">
+            <tr v-for="(order,index) in selectOrderList" :key="index" @click="orderClick" class="item-link">
               <td class="label-cell" data-collapsible-title="訂單時間">{{order.time}}</td>
               <td class="numeric-cell" data-collapsible-title="訂單號碼">{{order.number}}</td>
               <td class="numeric-cell" data-collapsible-title="餐點">{{order.content}}</td>
@@ -166,8 +166,8 @@ export default {
         return each.status == this.currentStatus;
       });
     },
-    ss() {
-      console.log(`cc`);
+    orderClick() {
+      console.log(`[orderClick]`);
     }
   },
   mounted() {
@@ -176,12 +176,3 @@ export default {
   }
 };
 </script>
-
-<style>
-:root {
-  --f7-chip-font-size: 15px;
-}
-a,.button{
-  display: inline;
-}
-</style>

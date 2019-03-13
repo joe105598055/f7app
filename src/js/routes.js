@@ -12,10 +12,7 @@ import NotFoundPage from '../pages/404.vue';
 import createMeal from '../pages/createMeal.vue'
 import createSet from '../pages/createSet.vue'
 import Meal from '../pages/meal.vue'
-// import ComboMeal from '../pages/comboMeal.vue'
 import OrderPage from '../pages/Order.vue'
-
-
 var routes = [
   {
     path: '/',

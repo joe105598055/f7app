@@ -3,30 +3,10 @@
     <!-- Status bar overlay for fullscreen mode-->
     <f7-statusbar></f7-statusbar>
 
-    <!-- Left panel with cover effect-->
-    <f7-panel left cover theme-dark>
-      <f7-view>
-        <f7-page>
-          <f7-navbar title="Left Panel"></f7-navbar>
-          <f7-block>Left panel content goes here</f7-block>
-        </f7-page>
-      </f7-view>
-    </f7-panel>
-
-    <!-- Right panel with reveal effect-->
-    <f7-panel right reveal theme-dark>
-      <f7-view>
-        <f7-page>
-          <f7-navbar title="Right Panel"></f7-navbar>
-          <f7-block>Right panel content goes here</f7-block>
-        </f7-page>
-      </f7-view>
-    </f7-panel>
-
     <!-- Views/Tabs container -->
     <f7-views tabs class="safe-areas">
       <!-- Tabbar for switching views-tabs -->
-      <f7-toolbar tabbar labels bottom>
+      <f7-toolbar id="my-toolbar" tabbar labels bottom>
         <f7-link
           tab-link="#view-home"
           tab-link-active
@@ -50,15 +30,15 @@
       </f7-toolbar>
 
       <!-- Your main view/tab, should have "view-main" class. It also has "tab-active" class -->
-        <f7-view id="view-home" main tab tab-active url="/"></f7-view>
-  
-        <!-- Catalog View -->
-        <f7-view id="view-menu" name="menu" tab url="/menu/"></f7-view>
+      <f7-view id="view-home" main tab tab-active url="/"></f7-view>
 
-        <f7-view id="view-order" name="order" tab url="/order/"></f7-view>
+      <!-- Catalog View -->
+      <f7-view id="view-menu" name="menu" tab url="/menu/"></f7-view>
 
-        <!-- Settings View -->
-        <f7-view id="view-settings" name="settings" tab url="/settings/"></f7-view>
+      <f7-view id="view-order" name="order" tab url="/order/"></f7-view>
+
+      <!-- Settings View -->
+      <f7-view id="view-settings" name="settings" tab url="/settings/"></f7-view>
     </f7-views>
 
     <!-- Popup -->
@@ -76,8 +56,7 @@
         </f7-page>
       </f7-view>
     </f7-popup>
-
-    <f7-login-screen id="my-login-screen">
+    <f7-login-screen id="my-login-screen" class="login-screen modal-in">
       <f7-view>
         <f7-page login-screen>
           <f7-login-screen-title>Login</f7-login-screen-title>
@@ -98,7 +77,7 @@
             ></f7-list-input>
           </f7-list>
           <f7-list>
-            <f7-list-button title="Sign In" login-screen-close @click="alertLoginData"></f7-list-button>
+            <f7-list-button title="Sign In" login-screen-close @click="login"></f7-list-button>
             <f7-block-footer>Some text about login information.
               <br>Click "Sign In" to close Login Screen
             </f7-block-footer>
@@ -148,27 +127,32 @@ export default {
             ]
           };
         },
-
         // App routes
         routes: routes
       },
-
       // Login screen data
       username: "",
       password: ""
     };
   },
   methods: {
-    alertLoginData() {
+    login() {
       this.$f7.dialog.alert(
         "Username: " + this.username + "<br>Password: " + this.password
       );
-    }
+    },
+    hide() {
+      console.log(`hide `);    }
   },
   mounted() {
     this.$f7ready(f7 => {
       // Call F7 APIs here
     });
+    console.log(`ready`);
+    let login = this.$f7.loginScreen.get("#my-login-screen");
+    this.$f7.toolbar.hide("#my-toolbar");
+
+    login.close();
   }
 };
 </script>
