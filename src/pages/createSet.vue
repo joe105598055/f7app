@@ -34,16 +34,17 @@
         <f7-button
           @click="createMealCard"
           class="col"
-          fill
+          outline
           raised
           color="blue"
           style="border-radius:25px; 
           width: 20%;
     margin-left: 40%"
-        >新增餐點搭配</f7-button>
+    icon-f7="add"
+        ></f7-button>
       </f7-block>
       <f7-block>
-        <f7-button @click="createSet" class="col" large fill raised color="green">新增套餐</f7-button>
+        <f7-button @click="createSet" class="col"  large fill raised color="green">新增套餐</f7-button>
       </f7-block>
     </f7-list>
   </f7-page>  

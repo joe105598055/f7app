@@ -148,7 +148,6 @@ export default {
     this.$f7ready(f7 => {
       // Call F7 APIs here
     });
-    console.log(`ready`);
     let login = this.$f7.loginScreen.get("#my-login-screen");
     this.$f7.toolbar.hide("#my-toolbar");
 

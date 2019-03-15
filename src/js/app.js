@@ -16,11 +16,13 @@ import '../css/app.css';
 
 // Import App Component
 import App from '../components/app.vue';
-import { Button, Tree } from 'element-ui';
+import { Table, Button,TableColumn,Tree } from 'element-ui';
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue)
+Vue.use(Table)
+Vue.use(Tree)
 Vue.use(Button)
-Vue.use(Tree);
+Vue.use(TableColumn)
 // Init App
 new Vue({
   el: '#app',

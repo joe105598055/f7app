@@ -2,113 +2,36 @@
   <f7-page name="settings">
     <f7-navbar title="Settings"></f7-navbar>
 
-    <f7-block-title>Form Example</f7-block-title>
-    <f7-list no-hairlines-md>
-      <f7-list-input
-        label="Name"
-        type="text"
-        placeholder="Your name"
-        :value="name"
-        :disabled="editMode"
-        @input="name = $event.target.value"
-      ></f7-list-input>
-
-      <f7-list-input
-        label="E-mail"
-        type="email"
-        :value="'qwert321@gamil.com'"
-        :disabled="editMode"
-        placeholder="E-mail"
-      ></f7-list-input>
-
-      <f7-list-input label="URL" type="url" placeholder="URL"></f7-list-input>
-
-      <f7-list-input label="Password" type="password" placeholder="Password"></f7-list-input>
-
-      <f7-list-input label="Phone" type="tel" placeholder="Phone"></f7-list-input>
-
-      <f7-list-input label="Gender" type="select" :disabled="editMode">
-        <option>Male</option>
-        <option>Female</option>
-      </f7-list-input>
-
-      <f7-list-input
-        label="Birth date"
-        type="date"
-        placeholder="Birth day"
-        defaultValue="2014-04-30"
-      ></f7-list-input>
-
-      <f7-list-item title="Toggle" :disabled="editMode">
-        <f7-toggle slot="after"></f7-toggle>
-      </f7-list-item>
-
-      <f7-list-input label="Range" :input="false" :disabled="editMode">
-        <f7-range slot="input" :value="50" :min="0" :max="100" :step="1"></f7-range>
-      </f7-list-input>
-
-      <f7-list-input type="textarea" label="Textarea" placeholder="Bio"></f7-list-input>
-      <f7-list-input type="textarea" label="Resizable" placeholder="Bio" resizable></f7-list-input>
-    </f7-list>
-
-    <f7-block-title>Buttons</f7-block-title>
-    <f7-block strong>
-      <f7-row tag="p">
-        <f7-button
-          class="col"
-          large
-          fill
-          raised
-          :color="editMode?'blue':'green'"
-          @click="editMode=!editMode"
-          :text="editMode?'edit':'save'"
-        ></f7-button>
+    <f7-block-title>....</f7-block-title>
+    <!-- <div class="grid">
+      <a href="#">優惠卷</a>
+      <div>商家設定</div>
+      <div>活動</div>
+      <div>口味</div>
+      <div>...</div>
+      <div>...</div>
+      <div>...</div>
+      <div>...</div>
+    </div>-->
+    <f7-block>
+      <f7-row no-gap>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill @click="routeFlavor" class="more">口味</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        </f7-col>
       </f7-row>
     </f7-block>
-    <!-- 
-    <f7-block-title>Checkbox group</f7-block-title>
-    <f7-list>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Books"
-        title="Books"
-      ></f7-list-item>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Movies"
-        title="Movies"
-      ></f7-list-item>
-      <f7-list-item
-        checkbox
-        name="my-checkbox"
-        value="Food"
-        title="Food"
-      ></f7-list-item>
-    </f7-list>
-
-    <f7-block-title>Radio buttons group</f7-block-title>
-    <f7-list>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Books"
-        title="Books"
-      ></f7-list-item>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Movies"
-        title="Movies"
-      ></f7-list-item>
-      <f7-list-item
-        radio
-        name="radio"
-        value="Food"
-        title="Food"
-      ></f7-list-item>
-    </f7-list>-->
   </f7-page>
 </template>
 <script>
@@ -116,9 +39,58 @@ export default {
   data() {
     return {
       editMode: true,
-      name:'Tom'
+      name: "Tom"
     };
   },
-  methods: {}
+  methods: {
+    routeFlavor() {
+      this.$f7router.navigate("/flavor");
+    }
+  },
+  mounted() {}
 };
 </script>
+<style>
+.more {
+  float: left;
+  width: 100%;
+  border: solid 0.5px;
+  border-radius: 0px;
+  height: 90px;
+  line-height: 90px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(6rem, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr)); */
+  grid-auto-rows: 1fr;
+}
+
+.grid::before {
+  content: "";
+  width: 0;
+  padding-bottom: 100%;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.grid > *:first-child {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+  text-align: center;
+  padding-top: 40%;
+}
+
+/* Just to make the grid visible */
+
+.grid > * {
+  background: rgba(145, 119, 119, 0.1);
+  border: 1px white solid;
+  text-align: center;
+  padding-top: 40%;
+  /* border-radius:100%; */
+  background-color: rgb(161, 211, 219);
+  font-size: 16px;
+  margin: 1px;
+}
+</style>

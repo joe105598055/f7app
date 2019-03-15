@@ -8,7 +8,7 @@
       @click="deleteCard"
     ></f7-link>
     <f7-row no-gap>
-      <el-tree :data="treeData" :props="defaultProps" show-checkbox @check="check"></el-tree>
+      <el-tree :data="treeData" :props="defaultProps" show-checkbox @check="check" :id="test"></el-tree>
     </f7-row>
     <f7-card-footer>
       <f7-list inline-labels no-hairlines-md>
@@ -30,6 +30,7 @@ export default {
   props: ["cardId"],
   data() {
     return {
+        test:'hello',
       treeData: [
         {
           label: "麵類",

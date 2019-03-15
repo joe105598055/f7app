@@ -13,10 +13,17 @@ import createMeal from '../pages/createMeal.vue'
 import createSet from '../pages/createSet.vue'
 import Meal from '../pages/meal.vue'
 import OrderPage from '../pages/Order.vue'
+import FlavorPage from '../pages/flavor.vue'
+
 var routes = [
   {
     path: '/',
     component: HomePage,
+    
+  },
+  {
+    path: '/flavor',
+    component: FlavorPage,
   },
   {
     path: '/order',
