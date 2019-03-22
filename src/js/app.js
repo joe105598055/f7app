@@ -16,7 +16,11 @@ import '../css/app.css';
 
 // Import App Component
 import App from '../components/app.vue';
-import { Table, Button,TableColumn,Tree } from 'element-ui';
+
+import '../bootstrap/css/bootstrap.css'
+import '../bootstrap/js/bootstrap.js'
+
+import { Table, Button, TableColumn, Tree} from 'element-ui';
 // Init Framework7-Vue Plugin
 Framework7.use(Framework7Vue)
 Vue.use(Table)

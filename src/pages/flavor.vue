@@ -1,10 +1,15 @@
 <template>
   <f7-page name="flavor">
     <f7-navbar title="口味設定" back-link="Back"></f7-navbar>
-    <f7-block-title style="float:right">
-      <f7-button fill color="gray">新增口味</f7-button>
-    </f7-block-title>
-    <f7-block class style="clear:both">
+    <f7-button
+      fill
+      color="gray"
+      class="createButton"
+      @click="createFlavor"
+      data-toggle="modal"
+      data-target="#myModal"
+    >新增口味</f7-button>
+    <f7-block>
       <el-table
         :data="tableData"
         :span-method="objectSpanMethod"
@@ -15,8 +20,6 @@
         <el-table-column prop="option" label="選項"></el-table-column>
         <el-table-column prop="price" label="價格"></el-table-column>
         <el-table-column label="操作" width="100">
-          <!-- <f7-button color="blue" outline style="float:left">編輯</f7-button>
-          <f7-button color="red" @click="deleteFlavor" outline style="float:left;margin-left:10px">刪除</f7-button>-->
           <template slot-scope="scope">
             <f7-button
               icon-f7="edit"
@@ -36,6 +39,47 @@
           </template>
         </el-table-column>
       </el-table>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog" style="margin-top:130px">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <f7-button class="close" data-dismiss="modal" style="float:right">&times;</f7-button> -->
+              <h4 class="modal-title">新增口味</h4>
+            </div>
+            <f7-list no-hairlines>
+              <f7-list-input label="口味" type="text" placeholder="輸入口味"></f7-list-input>
+              <f7-list-input label="選項" type="text" placeholder="輸入選項"></f7-list-input>
+              <f7-list-input label="價格" type="number" placeholder="輸入價格"></f7-list-input>
+            </f7-list>
+            <div class="modal-footer">
+              <f7-button fill color="red" style="float:right" data-dismiss="modal">取消</f7-button>
+              <f7-button fill color="blue" style="float:right;margin-right:5px;">新增</f7-button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="editModal" role="dialog" style="margin-top:130px">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <f7-button class="close" data-dismiss="modal" style="float:right">&times;</f7-button> -->
+              <h4 class="modal-title">編輯口味</h4>
+            </div>
+            <f7-list no-hairlines>
+              <f7-list-input label="口味" type="text" :value="editFlavor" placeholder="輸入口味"></f7-list-input>
+              <f7-list-input label="選項" type="text" :value="editOption" placeholder="輸入選項"></f7-list-input>
+              <f7-list-input label="價格" type="text" :value="editPrice" placeholder="輸入價格"></f7-list-input>
+            </f7-list>
+            <div class="modal-footer">
+              <f7-button fill color="red" style="float:right" data-dismiss="modal">取消</f7-button>
+              <f7-button fill color="blue" style="float:right;margin-right:5px;">儲存</f7-button>
+            </div>
+          </div>
+        </div>
+      </div>
     </f7-block>
   </f7-page>
 </template>
@@ -43,6 +87,7 @@
 export default {
   data() {
     return {
+      centerDialogVisible: false,
       tableData: [
         {
           flavor: "水果量",
@@ -94,12 +139,24 @@ export default {
           price: "+30"
         }
       ],
-      tableConfig: []
+      tableConfig: [],
+      editOption: "",
+      editFlavor: "",
+      editPrice: ""
     };
   },
   methods: {
+    createFlavor() {
+      console.log(`createFlavor`);
+    },
     handleEdit(index, row) {
       console.log(`[edit] ${index}, ${JSON.stringify(row)}`);
+      this.editOption = row.option;
+      this.editFlavor = row.flavor;
+      this.editPrice = row.price;
+      console.log(this.editPrice)
+      $("#editModal").modal({backdrop: 'static', keyboard: false});
+      
     },
     handleDelete(index, row) {
       console.log(`[delete] ${index}, ${JSON.stringify(row)}`);
@@ -152,10 +209,12 @@ export default {
 };
 </script>
 <style>
-div > a:hover {
-  background-color: inherit;
+.createButton {
+  float: right;
+  margin: 20px;
+  z-index: 2;
 }
-.hover-row {
-  background-color: inherit;
+button[data-dismiss="modal"] {
+  width: 30%;
 }
 </style>

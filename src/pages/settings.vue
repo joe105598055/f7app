@@ -19,6 +19,15 @@
           <f7-button color="gray" fill @click="routeFlavor" class="more">口味</f7-button>
         </f7-col>
         <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill @click="routeCoupon" class="more">優惠卷</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
+          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        </f7-col>
+        <f7-col width="25" tablet-width="20">
           <f7-button color="gray" fill class="more">優惠卷</f7-button>
         </f7-col>
         <f7-col width="25" tablet-width="20">
@@ -37,14 +46,14 @@
 <script>
 export default {
   data() {
-    return {
-      editMode: true,
-      name: "Tom"
-    };
+    return {};
   },
   methods: {
     routeFlavor() {
       this.$f7router.navigate("/flavor");
+    },
+    routeCoupon(){
+      this.$f7router.navigate("/coupon")
     }
   },
   mounted() {}

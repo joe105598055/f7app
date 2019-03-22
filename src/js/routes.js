@@ -14,28 +14,33 @@ import createSet from '../pages/createSet.vue'
 import Meal from '../pages/meal.vue'
 import OrderPage from '../pages/Order.vue'
 import FlavorPage from '../pages/flavor.vue'
+import CouponPage from '../pages/coupon.vue'
 
 var routes = [
   {
     path: '/',
     component: HomePage,
-    
+    // component: FlavorPage
+  },
+  {
+    path: '/coupon',
+    component: CouponPage
   },
   {
     path: '/flavor',
-    component: FlavorPage,
+    component: FlavorPage
   },
   {
     path: '/order',
-    component: OrderPage,
+    component: OrderPage
   },
   {
     path: '/menu',
-    component: MenuPage,
+    component: MenuPage
   },
   {
     path: '/createMeal',
-    component: createMeal,
+    component: createMeal
   },
   {
     path: '/meal',
