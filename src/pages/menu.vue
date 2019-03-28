@@ -2,18 +2,18 @@
   <f7-page name="menu">
     <f7-navbar title="菜單"></f7-navbar>
     <f7-subnavbar>
-      <f7-segmented raised>
-        <f7-button tab-link="#mealPage" tab-link-active>單點</f7-button>
-        <f7-button tab-link="#setPage">套餐</f7-button>
-      </f7-segmented>
-      <f7-subnavbar v-if="editMode">
-        <f7-segmented raised>
-          <f7-button :text="finishText" @click="finishEdit" color="red"></f7-button>
-        </f7-segmented>
-      </f7-subnavbar>
+      <f7-button
+        v-if="!editMode"
+        tab-link="#mealPage"
+        color="gray"
+        outline
+        style="margin:10px;"
+        tab-link-active
+      >單點</f7-button>
+      <f7-button v-if="!editMode" tab-link="#setPage" color="gray" outline style="margin:10px">套餐</f7-button>
+      <f7-button v-if="editMode" :text="finishText" @click="finishEdit" color="red"></f7-button>
     </f7-subnavbar>
 
-    <!-- <f7-button v-if="editMode" fill :text="finishText" @click="finishEdit"></f7-button> -->
     <f7-fab v-if="!editMode" position="right-bottom" slot="fixed" color="blue">
       <f7-icon ios="f7:edit" md="material:edit"></f7-icon>
       <f7-icon ios="f7:close" md="material:close"></f7-icon>
@@ -25,6 +25,24 @@
     </f7-fab>
     <f7-tabs>
       <f7-tab id="mealPage" tab-active @tab:show="mealTab">
+        <f7-list>
+          <f7-list-item id="selectContent">
+            <div class="item-input-wrap input-dropdown-wrap">
+              <select
+                placeholder="Please choose..."
+                v-model="currentSelect"
+                @change="selectStatus"
+                style="font-size:18px;"
+              >
+                <option value="全部餐點">全部餐點</option>
+                <option value="飲品">飲品</option>
+                <option value="甜點">甜點</option>
+                <option value="主餐">主餐</option>
+              </select>
+            </div>
+          </f7-list-item>
+        </f7-list>
+
         <f7-list
           media-list
           :sortable="mealSortable"
@@ -38,18 +56,29 @@
             :id="12345678"
             @click="routeSingleMeal"
             :checkbox="mealDeletable"
-            :title="'SingleMeal-' + i"
-            after="$15"
-            subtitle="Beatles"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus."
+            :title="'蜂蜜檸檬' + i"
+            after
+            subtitle="飲品"
           >
             <img
               slot="media"
               src="https://cdn.framework7.io/placeholder/people-160x160-1.jpg"
-              width="80"
+              width="63"
             >
-            <div class="item-text">xssss</div>
-            
+            <div class="item-text" style="text-align:center;font-size:20px;top:-26px;">
+              <b>$120</b>
+            </div>
+            <div class="item-text" style="float:right;top:-57px;">
+              <div>
+                <el-switch
+                  v-model="value2"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949"
+                  style="display:block"
+                ></el-switch>
+                <div id="remain" style="display:block;padding:2px;">庫存50</div>
+              </div>
+            </div>
           </f7-list-item>
         </f7-list>
       </f7-tab>
@@ -95,7 +124,9 @@ export default {
       setDeletable: false,
       editMode: false,
       currentTab: "meal",
-      finishText: "完成"
+      finishText: "完成",
+      value2: false,
+      currentSelect: "全部餐點"
     };
   },
   methods: {
@@ -119,7 +150,6 @@ export default {
       //   });
       // }
     },
-
     sortMenu() {
       this.editMode = true;
       this.finishText = "完成排序";
@@ -127,10 +157,11 @@ export default {
         document.getElementById("mealPage").classList.contains("tab-active")
       ) {
         this.mealSortable = true;
-        this.disableTab("setPage");
+        $("");
+        // this.disableTab("setPage");
       } else {
         this.setSortable = true;
-        this.disableTab("mealPage");
+        // this.disableTab("mealPage");
       }
     },
     deleteMenu() {
@@ -140,10 +171,10 @@ export default {
         document.getElementById("mealPage").classList.contains("tab-active")
       ) {
         this.mealDeletable = true;
-        this.disableTab("setPage");
+        // this.disableTab("setPage");
       } else {
         this.setDeletable = true;
-        this.disableTab("mealPage");
+        // this.disableTab("mealPage");
       }
     },
     finishEdit() {
@@ -152,8 +183,8 @@ export default {
       this.mealDeletable = false;
       this.setSortable = false;
       this.setDeletable = false;
-      $(`a[data-tab="#setPage"]`).css({ "pointer-events": "", opacity: "" });
-      $(`a[data-tab="#mealPage"]`).css({ "pointer-events": "", opacity: "" });
+      // $(`a[data-tab="#setPage"]`).css({ "pointer-events": "", opacity: "" });
+      // $(`a[data-tab="#mealPage"]`).css({ "pointer-events": "", opacity: "" });
     },
     mealTab() {
       this.currentTab = "meal";
@@ -182,6 +213,9 @@ export default {
         "pointer-events": "none",
         opacity: "0.3"
       });
+    },
+    selectStatus() {
+      console.log(`To do selectStatus`);
     }
   },
   mounted() {
@@ -190,7 +224,10 @@ export default {
       // Call F7 APIs here
     });
     $(".meal").on("click", function(e) {
-      console.log(e.currentTarget);
+      if (e.target === $(this).find(".el-switch__core")[0]) {
+        //prevent route by click swtich
+        return false;
+      }
       if (self.mealDeletable === false) {
         self.$f7router.navigate("/meal", {
           context: { name: "beef", price: "120" }
@@ -200,3 +237,54 @@ export default {
   }
 };
 </script>
+<style>
+#view-menu .subnavbar-inner {
+  width: auto;
+  margin: auto;
+}
+#view-menu a[data-tab="#mealPage"].button {
+  width: 150px;
+  border-radius: 0px;
+}
+#view-menu a[data-tab="#setPage"].button {
+  width: 150px;
+  border-radius: 0px;
+}
+#view-menu .item-title,
+.item-subtitle {
+  top: 8px;
+}
+.item-text {
+  display: block !important;
+}
+#view-menu .media-list .item-link .item-title-row:before,
+li.media-item .item-link .item-title-row:before {
+  display: none;
+}
+
+#view-menu .list .item-inner {
+  padding-bottom: 0px;
+  height: 80px;
+}
+
+#view-menu .list .item-text {
+  color: black;
+}
+#selectType {
+  font-size: 20px;
+}
+#view-menu .list.media-list {
+  margin-top: 0px;
+  margin-bottom: 100px;
+}
+#view-menu #selectContent .item-inner {
+  height: 20px !important;
+}
+
+#mealPage .list:nth-child(1) {
+  margin: 0px !important;
+}
+.subnavbar {
+  background-color: white;
+}
+</style>
