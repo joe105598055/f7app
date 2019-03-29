@@ -10,6 +10,8 @@ import DynamicRoutePage from '../pages/dynamic-route.vue';
 import RequestAndLoad from '../pages/request-and-load.vue';
 import NotFoundPage from '../pages/404.vue';
 import createMeal from '../pages/createMeal.vue'
+import mealTable from '../pages/mealTable.vue'
+
 import createSet from '../pages/createSet.vue'
 import Meal from '../pages/meal.vue'
 import OrderPage from '../pages/Order.vue'
@@ -41,6 +43,10 @@ var routes = [
   {
     path: '/createMeal',
     component: createMeal
+  },
+  {
+    path: '/mealTable',
+    component: mealTable
   },
   {
     path: '/meal',

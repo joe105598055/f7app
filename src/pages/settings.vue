@@ -2,7 +2,9 @@
   <f7-page name="settings">
     <f7-navbar title="Settings"></f7-navbar>
 
-    <f7-block-title>....</f7-block-title>
+    <f7-block-title>
+      <f7-button color="gray" outline style="float:right;width:30%;border-radius: 0px;">登出</f7-button>
+    </f7-block-title>
     <!-- <div class="grid">
       <a href="#">優惠卷</a>
       <div>商家設定</div>
@@ -15,30 +17,44 @@
     </div>-->
     <f7-block>
       <f7-row no-gap>
-        <f7-col width="25" tablet-width="20">
+        <f7-col width="33">
+          <f7-button color="gray" fill class="more">活動</f7-button>
+        </f7-col>
+        <f7-col width="33">
           <f7-button color="gray" fill @click="routeFlavor" class="more">口味</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
+        <f7-col width="33">
           <f7-button color="gray" fill @click="routeCoupon" class="more">優惠卷</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
-          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">語系</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
-          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">帳號</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
-          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">點數</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
-          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">餐廳</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
-          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">通知</f7-button>
         </f7-col>
-        <f7-col width="25" tablet-width="20">
-          <f7-button color="gray" fill class="more">優惠卷</f7-button>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">發票</f7-button>
         </f7-col>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">支付</f7-button>
+        </f7-col>
+        <f7-col width="33" tablet-width="20">
+          <f7-button color="gray" fill class="more">叫修</f7-button>
+        </f7-col>
+        <f7-col width="33" tablet-width="20">
+          <!-- <f7-button color="gray" fill class="more">叫修</f7-button> -->
+        </f7-col>
+      
+
       </f7-row>
     </f7-block>
   </f7-page>
@@ -52,8 +68,8 @@ export default {
     routeFlavor() {
       this.$f7router.navigate("/flavor");
     },
-    routeCoupon(){
-      this.$f7router.navigate("/coupon")
+    routeCoupon() {
+      this.$f7router.navigate("/coupon");
     }
   },
   mounted() {}
@@ -67,6 +83,8 @@ export default {
   border-radius: 0px;
   height: 90px;
   line-height: 90px;
+
+  height: calc(width * 1);
 }
 .grid {
   display: grid;

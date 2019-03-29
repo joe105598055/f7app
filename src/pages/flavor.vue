@@ -1,6 +1,6 @@
 <template>
-  <f7-page name="flavor">
-    <f7-navbar title="口味設定" back-link="Back"></f7-navbar>
+  <f7-page name="flavor" id="flavor">
+    <f7-navbar title="口味設定" back-link=""></f7-navbar>
     <f7-button
       fill
       color="gray"
@@ -65,7 +65,6 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <!-- <f7-button class="close" data-dismiss="modal" style="float:right">&times;</f7-button> -->
               <h4 class="modal-title">編輯口味</h4>
             </div>
             <f7-list no-hairlines>
@@ -75,7 +74,7 @@
             </f7-list>
             <div class="modal-footer">
               <f7-button fill color="red" style="float:right" data-dismiss="modal">取消</f7-button>
-              <f7-button fill color="blue" style="float:right;margin-right:5px;">儲存</f7-button>
+              <f7-button fill color="blue" style="float:right;margin-right:5px;">儲存</f7-button> 
             </div>
           </div>
         </div>
@@ -217,4 +216,11 @@ export default {
 button[data-dismiss="modal"] {
   width: 30%;
 }
+#flavor .createButton:focus,a.createButton:active{
+  color: white;
+}
+#flavor .modal-footer a:focus,a:active{
+  color: white;
+}
+/*  */
 </style>

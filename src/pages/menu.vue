@@ -26,12 +26,12 @@
     <f7-tabs>
       <f7-tab id="mealPage" tab-active @tab:show="mealTab">
         <f7-list>
-          <f7-list-item id="selectContent">
+          <f7-list-item id="selectMealContent">
             <div class="item-input-wrap input-dropdown-wrap">
               <select
                 placeholder="Please choose..."
-                v-model="currentSelect"
-                @change="selectStatus"
+                v-model="mealOption"
+                @change="changeMealOption"
                 style="font-size:18px;"
               >
                 <option value="全部餐點">全部餐點</option>
@@ -73,7 +73,7 @@
                 <el-switch
                   v-model="value2"
                   active-color="#13ce66"
-                  inactive-color="#ff4949"
+                  inactive-color="#a6aab2"
                   style="display:block"
                 ></el-switch>
                 <div id="remain" style="display:block;padding:2px;">庫存50</div>
@@ -82,7 +82,25 @@
           </f7-list-item>
         </f7-list>
       </f7-tab>
+      <!-- start -->
       <f7-tab id="setPage" @tab:show="setTab">
+        <f7-list>
+          <f7-list-item id="selectSetContent">
+            <div class="item-input-wrap input-dropdown-wrap">
+              <select
+                placeholder="Please choose..."
+                v-model="setOption"
+                @change="changeSetOption"
+                style="font-size:18px;"
+              >
+                <option value="全部餐點">全部餐點</option>
+                <option value="飲品">飲品</option>
+                <option value="甜點">甜點</option>
+                <option value="主餐">主餐</option>
+              </select>
+            </div>
+          </f7-list-item>
+        </f7-list>
         <f7-list
           media-list
           :sortable="setSortable"
@@ -95,19 +113,19 @@
             :id="123"
             :checkbox="setDeletable"
             :key="i"
-            :title="'ComboMeal-' + i"
-            after="$16"
+            :title="'套餐' + i"
+            after
             subtitle="Michael Jackson"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis tellus ut turpis condimentum, ut dignissim lacus tincidunt. Cras dolor metus, ultrices condimentum sodales sit amet, pharetra sodales eros. Phasellus vel felis tellus. Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet, commodo augue id, pulvinar lacus."
           >
             <img
               slot="media"
               src="https://cdn.framework7.io/placeholder/people-160x160-3.jpg"
-              width="80"
+              width="63"
             >
           </f7-list-item>
         </f7-list>
       </f7-tab>
+      <!-- end -->
     </f7-tabs>
   </f7-page>
 </template>
@@ -126,7 +144,8 @@ export default {
       currentTab: "meal",
       finishText: "完成",
       value2: false,
-      currentSelect: "全部餐點"
+      mealOption: "全部餐點",
+      setOption: "全部餐點"
     };
   },
   methods: {
@@ -135,7 +154,11 @@ export default {
         if (
           document.getElementById("mealPage").classList.contains("tab-active")
         ) {
-          this.$f7router.navigate("/createMeal");
+          this.$f7router.navigate("/mealTable", {
+            // pushState: true,
+            // reloadAll: true,
+            // ignoreCache: true
+          });
         } else {
           this.$f7router.navigate("/createSet");
         }
@@ -157,7 +180,6 @@ export default {
         document.getElementById("mealPage").classList.contains("tab-active")
       ) {
         this.mealSortable = true;
-        $("");
         // this.disableTab("setPage");
       } else {
         this.setSortable = true;
@@ -214,8 +236,11 @@ export default {
         opacity: "0.3"
       });
     },
-    selectStatus() {
-      console.log(`To do selectStatus`);
+    changeMealOption() {
+      console.log(`To do changeMealOption`);
+    },
+    changeSetOption() {
+      console.log(`To do changeSetOption`);
     }
   },
   mounted() {
@@ -277,11 +302,18 @@ li.media-item .item-link .item-title-row:before {
   margin-top: 0px;
   margin-bottom: 100px;
 }
-#view-menu #selectContent .item-inner {
+#view-menu #selectMealContent .item-inner {
+  height: 20px !important;
+}
+#view-menu #selectSetContent .item-inner {
   height: 20px !important;
 }
 
 #mealPage .list:nth-child(1) {
+  margin: 0px !important;
+}
+
+#setPage .list:nth-child(1) {
   margin: 0px !important;
 }
 .subnavbar {

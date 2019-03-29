@@ -35,7 +35,6 @@
         </f7-col>
       </f7-row>
     </f7-block>
-
     <f7-block-title>Panels</f7-block-title>
     <f7-block strong>
       <f7-row>
@@ -47,7 +46,6 @@
         </f7-col>
       </f7-row>
     </f7-block>
-
     <f7-list>
       <f7-list-item class="item-link" title="Dynamic (Component) Route" @click="routeTo"></f7-list-item>
       <f7-list-item title="Default Route (404)" link="/load-something-that-doesnt-exist/"></f7-list-item>

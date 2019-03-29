@@ -1,6 +1,6 @@
 <template>
   <f7-page name="singleMeal">
-    <f7-navbar back-link="Back"></f7-navbar>
+    <f7-navbar back-link=""></f7-navbar>
     <f7-block>
       <img
         class="elevation-demo elevation-6 elevation-hover-24 elevation-pressed-12 elevation-transition"
@@ -80,7 +80,12 @@ export default {
       name:'Tom'
     };
   },
-  methods: {}
+  methods: {
+
+  },
+  mounted(){
+    console.log(this.$f7route.context)
+  }
 };
 </script>
 
