@@ -39,6 +39,7 @@
                 <option value="甜點">甜點</option>
                 <option value="主餐">主餐</option>
               </select>
+              <!-- <f7-icon f7="data_fill" size="20px" color="blue" style="float:right;top:-25px;"></f7-icon> -->
             </div>
           </f7-list-item>
         </f7-list>
@@ -250,7 +251,7 @@ export default {
     });
     $(".meal").on("click", function(e) {
       if (e.target === $(this).find(".el-switch__core")[0]) {
-        //prevent route by click swtich
+        //prevent route by click swtich element
         return false;
       }
       if (self.mealDeletable === false) {
@@ -318,5 +319,8 @@ li.media-item .item-link .item-title-row:before {
 }
 .subnavbar {
   background-color: white;
+}
+.input-dropdown-wrap:before, .input-dropdown:before{
+  /* content:none; */
 }
 </style>

@@ -171,7 +171,6 @@ export default {
     }
   },
   mounted() {
-    console.log(`[mounted]`);
     this.selectOrderList = this.orderList;
   }
 };

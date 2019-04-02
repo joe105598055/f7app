@@ -10,22 +10,17 @@
         <f7-link
           tab-link="#view-home"
           tab-link-active
-          icon-ios="f7:bars_chart"
+          icon-ios="f7:home"
           icon-md="material:home"
-          text="總覽"
+          text="營運"
         ></f7-link>
-        <f7-link tab-link="#view-menu" icon-ios="f7:menu" icon-md="material:menu" text="菜單"></f7-link>
-        <f7-link
-          tab-link="#view-order"
-          icon-ios="f7:list_fill"
-          icon-md="material:view_list"
-          text="訂單"
-        ></f7-link>
+        <f7-link tab-link="#view-menu" icon-ios="f7:document_text" icon-md="material:document_text" text="菜單"></f7-link>
+        <f7-link tab-link="#view-order" icon-ios="f7:list" icon-md="material:view_list" text="訂單"></f7-link>
         <f7-link
           tab-link="#view-settings"
-          icon-ios="f7:settings_fill"
-          icon-md="material:settings"
-          text="Settings"
+          icon-ios="f7:menu"
+          icon-md="material:menu"
+          text="設定"
         ></f7-link>
       </f7-toolbar>
 
@@ -59,28 +54,35 @@
     <f7-login-screen id="my-login-screen" class="login-screen modal-in">
       <f7-view>
         <f7-page login-screen>
-          <f7-login-screen-title>Login</f7-login-screen-title>
-          <f7-list form>
-            <f7-list-input
-              type="text"
-              name="username"
-              placeholder="Your username"
-              :value="username"
-              @input="username = $event.target.value"
-            ></f7-list-input>
-            <f7-list-input
-              type="password"
-              name="password"
-              placeholder="Your password"
-              :value="password"
-              @input="password = $event.target.value"
-            ></f7-list-input>
-          </f7-list>
+          <f7-login-screen-title>
+            <img src="../../logo.png" width="200" height="300">
+          </f7-login-screen-title>
+          <f7-block style="width:70%;">
+            <f7-list inline-labels no-hairlines-md>
+              <f7-list-input
+                label="帳號 :"
+                type="text"
+                name="username"
+                placeholder
+                :value="username"
+                @input="username = $event.target.value"
+              ></f7-list-input>
+              <f7-list-input
+                label="密碼 :"
+                type="password"
+                name="password"
+                placeholder
+                :value="password"
+                @input="password = $event.target.value"
+              ></f7-list-input>
+            </f7-list>
+          </f7-block>
           <f7-list>
-            <f7-list-button title="Sign In" login-screen-close @click="login"></f7-list-button>
-            <f7-block-footer>Some text about login information.
+            <f7-list-button title="登入" @click="login"></f7-list-button>
+            <!-- <f7-block-footer>
+              Some text about login information
               <br>Click "Sign In" to close Login Screen
-            </f7-block-footer>
+            </f7-block-footer>-->
           </f7-list>
         </f7-page>
       </f7-view>
@@ -89,6 +91,7 @@
 </template>
 <script>
 import routes from "../js/routes.js";
+import $$ from "dom7";
 
 export default {
   data() {
@@ -137,21 +140,30 @@ export default {
   },
   methods: {
     login() {
-      this.$f7.dialog.alert(
-        "Username: " + this.username + "<br>Password: " + this.password
-      );
+      let login = this.$f7.loginScreen.get("#my-login-screen");
+      login.close();
+      $("[data-tab='#view-home']")[0].click(); // default page
     },
     hide() {
-      console.log(`hide `);    }
+      console.log(`hide `);
+    }
   },
   mounted() {
     this.$f7ready(f7 => {
       // Call F7 APIs here
     });
+    // this.$f7.toolbar.hide("#my-toolbar");
     let login = this.$f7.loginScreen.get("#my-login-screen");
-    this.$f7.toolbar.hide("#my-toolbar");
-
     login.close();
   }
 };
 </script>
+<style>
+.login-screen-title {
+  margin-top: 100px !important;
+}
+.login-screen.modal-in,
+.login-screen.modal-out {
+  transition-duration: 200ms;
+}
+</style>

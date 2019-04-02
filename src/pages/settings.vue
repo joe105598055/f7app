@@ -3,7 +3,12 @@
     <f7-navbar title="Settings"></f7-navbar>
 
     <f7-block-title>
-      <f7-button color="gray" outline style="float:right;width:30%;border-radius: 0px;">登出</f7-button>
+      <f7-button
+        color="gray"
+        outline
+        style="float:right;width:30%;border-radius: 0px;"
+        @click="logout"
+      >登出</f7-button>
     </f7-block-title>
     <!-- <div class="grid">
       <a href="#">優惠卷</a>
@@ -53,8 +58,6 @@
         <f7-col width="33" tablet-width="20">
           <!-- <f7-button color="gray" fill class="more">叫修</f7-button> -->
         </f7-col>
-      
-
       </f7-row>
     </f7-block>
   </f7-page>
@@ -70,6 +73,15 @@ export default {
     },
     routeCoupon() {
       this.$f7router.navigate("/coupon");
+    },
+    logout() {
+      let login = this.$f7.loginScreen.get("#my-login-screen");
+      login.open();
+      // this.$f7router.navigate('/',{
+      //   pushState: true,
+      //   reloadAll: true,
+      //   ignoreCache: true
+      // })
     }
   },
   mounted() {}
