@@ -7,11 +7,8 @@
       <f7-segmented raised>
         <!-- <f7-button :active="currentDuration=='今日'" @click="chooseToday">今日</f7-button>
         <f7-button :active="currentDuration=='近七日'" @click="chooseWeek">近七日</f7-button>
-        <f7-button :active="currentDuration=='本月'" @click="chooseMonth">本月</f7-button> -->
-          <div
-          id="reportrange"
-          style="width: 100%"
-        >
+        <f7-button :active="currentDuration=='本月'" @click="chooseMonth">本月</f7-button>-->
+        <div id="reportrange" style="width: 100%">
           <f7-icon f7="calendar"></f7-icon>
           <span></span>
         </div>
@@ -29,7 +26,7 @@
         >
           <f7-icon f7="calendar"></f7-icon>
           <span></span>
-        </div> -->
+        </div>-->
       </div>
       <div class="card-content">
         <div id="myChart"></div>
@@ -81,6 +78,9 @@ export default {
         calendarRange.open();
       });
     }, 500);
+    $("#reportrange").click(() => {
+      console.log($('div.daterangepicke.ltr.show-ranges.opensleft').css('display'))
+    });
     calendarRange.on("close", function(calendar) {
       console.log(`[close]`);
       console.log(moment(calendar.getValue()[0]).format("MMMM D, YYYY"));
@@ -161,7 +161,7 @@ $(function() {
       endDate: end,
       showDropdowns: true,
       showCustomRangeLabel: false,
-      backdrop: false ,
+      backdrop: false,
       closeByBackdropClick: false,
       opens: "left",
       drops: "down",

@@ -11,7 +11,7 @@
         tab-link-active
       >單點</f7-button>
       <f7-button v-if="!editMode" tab-link="#setPage" color="gray" outline style="margin:10px">套餐</f7-button>
-      <f7-button v-if="editMode" :text="finishText" @click="finishEdit" color="red"></f7-button>
+      <f7-button id="finishEdit" v-if="editMode" :text="finishText" @click="finishEdit" color="red"></f7-button>
     </f7-subnavbar>
 
     <f7-fab v-if="!editMode" position="right-bottom" slot="fixed" color="blue">
@@ -264,17 +264,20 @@ export default {
 };
 </script>
 <style>
-#view-menu .subnavbar-inner {
+/* #view-menu .subnavbar-inner {
   width: auto;
   margin: auto;
-}
+} */
 #view-menu a[data-tab="#mealPage"].button {
-  width: 150px;
+  width: 50%;
   border-radius: 0px;
 }
 #view-menu a[data-tab="#setPage"].button {
-  width: 150px;
+  width: 50%;
   border-radius: 0px;
+}
+#view-menu #finishEdit {
+  width: 100%;
 }
 #view-menu .item-title,
 .item-subtitle {
@@ -320,7 +323,8 @@ li.media-item .item-link .item-title-row:before {
 .subnavbar {
   background-color: white;
 }
-.input-dropdown-wrap:before, .input-dropdown:before{
+.input-dropdown-wrap:before,
+.input-dropdown:before {
   /* content:none; */
 }
 </style>

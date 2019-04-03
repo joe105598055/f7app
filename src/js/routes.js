@@ -17,12 +17,18 @@ import Meal from '../pages/meal.vue'
 import OrderPage from '../pages/Order.vue'
 import FlavorPage from '../pages/flavor.vue'
 import CouponPage from '../pages/coupon.vue'
+import ReportPage from '../pages/report.vue'
+
 
 var routes = [
   {
     path: '/',
     component: HomePage,
     // component: FlavorPage
+  },
+  {
+    path: '/report',
+    component: ReportPage
   },
   {
     path: '/coupon',

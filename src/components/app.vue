@@ -16,6 +16,7 @@
         ></f7-link>
         <f7-link tab-link="#view-menu" icon-ios="f7:document_text" icon-md="material:document_text" text="菜單"></f7-link>
         <f7-link tab-link="#view-order" icon-ios="f7:list" icon-md="material:view_list" text="訂單"></f7-link>
+        <f7-link tab-link="#view-report" icon-ios="f7:bars_chart" icon-md="material:bars_chart" text="報表"></f7-link>
         <f7-link
           tab-link="#view-settings"
           icon-ios="f7:menu"
@@ -32,10 +33,11 @@
 
       <f7-view id="view-order" name="order" tab url="/order/"></f7-view>
 
+      <f7-view id="view-report" name="report" tab url="/report/"></f7-view>
+
       <!-- Settings View -->
       <f7-view id="view-settings" name="settings" tab url="/settings/"></f7-view>
     </f7-views>
-
     <!-- Popup -->
     <f7-popup id="my-popup">
       <f7-view>
